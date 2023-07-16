@@ -3,8 +3,8 @@ const app = express();
 const userRoutes = require('./routes/userRoutes')
 const userInfoRoutes = require('./routes/healthRoutes');
 const cors = require('cors');
+const serverless = require('serverless-http');
 
-const router = express.Router();
 
 require('dotenv').config();
 
@@ -19,12 +19,14 @@ app.use((req, res, next) => {
     next()
 })
 
-app.use("/api/users", userRoutes);
+app.use("/.netlify/functions/server/users", userRoutes);
 
-app.use("/api/userinfo", userInfoRoutes);
+app.use("/.netlify/functions/server/userinfo", userInfoRoutes);
 
+module.exports = app;
+module.exports.handler = serverless(app);
 
+// app.listen(port, ()=>{
+//     console.log('listening on port', process.env.PORT)
+// })
 
-app.listen(port, ()=>{
-    console.log('listening on port', process.env.PORT)
-})
