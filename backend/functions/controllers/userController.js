@@ -11,18 +11,33 @@ const supabase = require('./../createClient');
 // @access public
 
 const registerUser = asyncHandler(async (req, res) => {
-    const {email, password} = req.body
-    const { data, error } = await supabase.auth.signUp({
-        email,
-        password
-    })
-    if (error){
+    try {
+        const {email, password, age, sex, occupational_hazards} = req.body
+        const { data, error } = await supabase.auth.signUp({
+            email,
+            password,
+        })
+        if (error){
+            console.log(error);
+            console.log(data);
+            res.status(400).json({msg:"Could not register"});
+            throw new Error("Can't register", error);
+        }   
+    
+        const response = await supabase
+            .from('ConstUserInfo')
+            .insert({age, sex, occupational_hazards})
+        console.log("we r here", res.status, response.error)
+        if (response.error){
+            console.log(response.error)
+            return res.status(400).json({msg:"Bad body!"})
+        }    
+        return res.status(200).json(data);  
+
+    } catch (error) {
         console.log(error);
-        console.log(data);
-        res.status(400).json({msg:"Could not register"});
-        throw new Error("Can't register", error);
-    }    
-    return res.status(200).json(data);   
+        return res.status(500).json({msg:"server error"});
+    }
 })
 
 

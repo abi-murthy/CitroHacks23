@@ -6,19 +6,19 @@ const supabase = require('./../createClient')
 
 
 // fetch data
-// const fetchData = asyncHandler(async (req, res) => {
-//     const user_id = "987c3ed7-e091-45b0-b5b9-996306168b1b";
-//     // const { weight, caloriesIn, caloriesOut } = req.body; // Assuming the form submission is available in req.body
-//     const { data, error } = await supabase
-//     .from('User Info')
-//     .select()
-//     .eq('user_id', user_id)
-//     if (error){
-//         return res.status(400).json({msg:"Bad body!"})
-//     }
-//     res.status(200).json({message: "fetch successful"});
 
-// })
+
+const fetchData = asyncHandler(async (req, res) => {
+    // const { weight, caloriesIn, caloriesOut } = req.body; // Assuming the form submission is available in req.body
+    const { data, error } = await supabase
+    .from('User Info')
+    .select()
+    
+    if (error){
+        return res.status(400).json({msg:"Bad body!"})
+    }
+    res.status(200).json({message: "fetch successful"});
+})
 
 
 

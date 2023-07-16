@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
 
-def make_pred(weight, cal_in, cal_out):
+def make_pred(weight, cal_in, cal_out, gender, alcohol_usage, age, chronic_disease, ocupational_hazard):
 
     # Load the CSV data set
     data = pd.read_csv('disease_data.csv')
@@ -53,15 +53,15 @@ def make_pred(weight, cal_in, cal_out):
 
     # Predict for person A with disease_data.csv
     person_A = pd.DataFrame({
-        'Age': [78],
-        'Gender': [2],
+        'Age': [age],
+        'Gender': [gender],
         'Weight In Pounds': [weight],
         'Daily Calories Intake': [cal_in],
         'Daily Calories Outtake': [cal_out],
-        'Alcohol Use': [9],
-        'Smoking': [3],
-        'Occupational Hazards': [5],
-        'Chronic Disease': [8]
+        'Alcohol Use': [alcohol_usage],
+        'Smoking': [4],
+        'Occupational Hazards': [ocupational_hazard],
+        'Chronic Disease': [chronic_disease]
     })
 
     chance_prediction = clf.predict(person_A)[0]
