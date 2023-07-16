@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import './login.dart';
 import './form.dart';
 import './register.dart';
-
+import '/data.dart';
 void main() {
   runApp(MyApp());
 }
@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => LoginPage(),
         '/register': (context) => RegisterPage(),
         '/form': (context) => Form(),
+        '/data': (context) => DataPage()
       },
     );
   }
@@ -53,6 +54,19 @@ class RegisterPage extends StatelessWidget {
     );
   }
 }
+
+class DataPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Data(), // Use your component
+      ),
+    );
+  }
+}
+
+
 
 
 

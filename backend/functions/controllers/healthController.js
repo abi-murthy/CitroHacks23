@@ -13,11 +13,11 @@ const fetchData = asyncHandler(async (req, res) => {
     const { data, error } = await supabase
     .from('User Info')
     .select()
-    
+
     if (error){
         return res.status(400).json({msg:"Bad body!"})
     }
-    res.status(200).json({message: "fetch successful"});
+    return res.status(200).json(data);
 })
 
 
@@ -89,6 +89,7 @@ const deleteUserInfo = asyncHandler(async (req, res) => {
 module.exports = {
     editUserInfo,
     addUserInfo, 
-    deleteUserInfo
+    deleteUserInfo, 
+    fetchData
 };
 

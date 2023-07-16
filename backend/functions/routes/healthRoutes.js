@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-const {addUserInfo, editUserInfo, deleteUserInfo} = require('./../controllers/healthController')
+const {addUserInfo, editUserInfo, deleteUserInfo, fetchData} = require('./../controllers/healthController')
 
 
+// get entries
+router.get('/', fetchData)
 
 //add entry
 router.post('/add', addUserInfo)

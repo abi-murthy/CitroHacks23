@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/data.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
 import 'dart:convert';
+import 'data.dart';
 
 
 // Future<void> makeApiCall() async {
@@ -239,8 +241,6 @@ class MyCustomFormState extends State<MyCustomForm> {
               )
             ),
             
-           
-            
             Padding(
               padding: const EdgeInsets.all(30),
               child: ElevatedButton(
@@ -258,7 +258,20 @@ class MyCustomFormState extends State<MyCustomForm> {
                 },
                 child: const Text('Submit'),
               ),
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.all(30),
+              child: ElevatedButton(
+                onPressed: () {
+                  // Validate returns true if the form is valid, or false otherwise.
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Data()),
+                    );
+                },
+                child: const Text('Submitted Data Table'),
+              ),
+            ),
           ],
         ),
       )
